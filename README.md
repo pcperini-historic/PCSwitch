@@ -10,7 +10,7 @@ Declared In:      PCSwitch.h
 
 You use the `PCSwitch` class to create and manage On/Off buttons similar to those in iOS' Settings app. These objects are known as switches.
 
-The `PCSwitch` class declares a property and a method to control its on/off state. When the user manipulates the switch control ("flips" int) a `PCSwitchStateDidChangeNotification` notification is posted.
+The `PCSwitch` class declares a property and a method to control its on/off state. When the user manipulates the switch control ("flips" it) a `PCSwitchStateDidChangeNotification` notification is posted.
 
 You can customize the appearance of the switch by changing the color used to tint the switch when it is in the on position, and changing the text that appears in the on and off positions.
 
