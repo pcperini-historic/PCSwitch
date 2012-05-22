@@ -14,8 +14,7 @@ The `PCSwitch` class declares a property and a method to control its on/off stat
 
 You can customize the appearance of the switch by changing the color used to tint the switch when it is in the on position, and changing the text that appears in the on and off positions.
 
-<img src="http://i.imgur.com/ezomD.png"/>
-<img src="http://i.imgur.com/5Puh8.png"/>
+<img src="http://i.imgur.com/ycJzu.png"/>
 
 
 ##Tasks##
