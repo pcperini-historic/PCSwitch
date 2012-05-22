@@ -3,7 +3,7 @@
 //  PCSwitchTests
 //
 //  Created by Patrick Perini on 5/21/12.
-//  Licensing information available in README.md
+//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "PCSwitch.h"
@@ -15,7 +15,7 @@
 #define switchOffTintColor [NSColor colorWithCalibratedWhite: .96 alpha: 1]
 #define switchButtonSize   NSMakeSize(20, 20)
 #define switchFontSize     13
-#define switchFontColor    [[onTintColor colorUsingColorSpace: [NSColorSpace deviceGrayColorSpace]] whiteComponent] >= .5? [NSColor blackColor] : [NSColor whiteColor]
+#define switchTintIsLight  [[onTintColor colorUsingColorSpace: [NSColorSpace deviceGrayColorSpace]] whiteComponent] >= .75
 
 #define switchGrooveBorderColor  [NSColor colorWithCalibratedWhite: .75 alpha: 1]
 #define switchGrooveGlowColor    [NSColor colorWithCalibratedWhite: 1 alpha: .1]
@@ -179,7 +179,15 @@ NSString *const PCSwitchStateDidChangeNotification = @"PCSwitchStateDidChangeNot
     // On Text
     NSMutableAttributedString *onTextLabel = [[self labelForText: onText] mutableCopy];
     [onTextLabel addAttribute: NSForegroundColorAttributeName
-                        value: switchFontColor
+                        value: switchTintIsLight? [NSColor blackColor] : [NSColor whiteColor]
+                        range: NSRangeOfString(onText)];
+    
+    NSShadow *onTextLabelShadow = [[NSShadow alloc] init];
+    [onTextLabelShadow setShadowColor: switchTintIsLight? [[NSColor whiteColor] colorWithAlphaComponent: .5] : [[NSColor blackColor] colorWithAlphaComponent: .5]];
+    [onTextLabelShadow setShadowOffset: NSMakeSize(0, switchTintIsLight? -1 : 1)];
+    [onTextLabelShadow setShadowBlurRadius: 0];
+    [onTextLabel addAttribute: NSShadowAttributeName
+                        value: onTextLabelShadow
                         range: NSRangeOfString(onText)];
     
     NSPoint onTextLabelOrigin = NSZeroPoint;
@@ -201,6 +209,14 @@ NSString *const PCSwitchStateDidChangeNotification = @"PCSwitchStateDidChangeNot
     NSMutableAttributedString *offTextLabel = [[self labelForText: offText] mutableCopy];
     [offTextLabel addAttribute: NSForegroundColorAttributeName
                          value: [NSColor darkGrayColor]
+                         range: NSRangeOfString(offText)];
+    
+    NSShadow *offTextLabelShadow = [[NSShadow alloc] init];
+    [offTextLabelShadow setShadowColor: [[NSColor whiteColor] colorWithAlphaComponent: .5]];
+    [offTextLabelShadow setShadowOffset: NSMakeSize(0, -1)];
+    [offTextLabelShadow setShadowBlurRadius: 0];
+    [offTextLabel addAttribute: NSShadowAttributeName
+                         value: offTextLabelShadow
                          range: NSRangeOfString(offText)];
     
     NSPoint offTextLabelOrigin = NSZeroPoint;
