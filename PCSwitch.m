@@ -55,6 +55,9 @@ NSString *const PCSwitchStateDidChangeNotification = @"PCSwitchStateDidChangeNot
 
 - (void)setOn:(BOOL)aState animated:(BOOL)animated
 {
+    if (aState == [self isOn])
+        return;
+                                            
     NSRect newButtonFrame = buttonFrame;
     if ([self isOn])
         newButtonFrame.origin.x = NSMaxX(self.bounds) - switchButtonSize.width - 1;
