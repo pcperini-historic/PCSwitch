@@ -130,6 +130,8 @@ NSString *const PCSwitchStateDidChangeNotification = @"PCSwitchStateDidChangeNot
     self = [super initWithFrame: frame];
     if (!self)
         return nil;
+        
+    [self awakeFromNib];
     
     return self;
 }
