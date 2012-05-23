@@ -303,10 +303,8 @@ NSString *const PCSwitchStateDidChangeNotification = @"PCSwitchStateDidChangeNot
         {
             [self setOn: ![self isOn]
                animated: YES];
-            return;
         }
-        
-        if ([self isOn])
+        else if ([self isOn])
         {
             [self setOn: !(NSMidX(buttonFrame) <= NSMidX(self.bounds))
                animated: YES];
